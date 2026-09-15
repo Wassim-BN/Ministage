@@ -4,7 +4,9 @@ SET time_zone = '+00:00';
 SET foreign_key_checks = 0;
 SET sql_mode = 'NO_AUTO_VALUE_ON_ZERO';
 SET NAMES utf8mb4;
--- CREATE DATABASE `ministages44_1` /*!40100 DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci */ /*!80016 DEFAULT ENCRYPTION='N' */;
+
+DROP DATABASE IF EXISTS `ministages44_1`;
+CREATE DATABASE `ministages44_1` /*!40100 DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci */ /*!80016 DEFAULT ENCRYPTION='N' */;
 USE `ministages44_1`;
 -- --------------------------------------------------------
 --
@@ -94,8 +96,8 @@ CREATE TABLE `t_etablissement` (
     `cachet` text NOT NULL,
     `tel` varchar(20) NOT NULL,
     PRIMARY KEY (`id`),
-    KEY 'idtype' ('idtype'),
-    KEY 'idacademie' ('idacademie')
+    KEY `idtype` (`idtype`),
+    KEY `idacademie` (`idacademie`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_bin;
 -- --------------------------------------------------------
 --
@@ -131,8 +133,8 @@ CREATE TABLE `logactionutilisateur` (
     `action` varchar(256) character set utf8mb3 COLLATE utf8mb3_bin NOT NULL,
     `temps` TIME,
     `idUtilisateur` char(32) character set utf8mb3 COLLATE utf8mb3_bin NOT NULL,
-    PRIMARY KEY ('id'),
-    KEY 'idUtilisateur' ('idutilisateur')
+    PRIMARY KEY (`id`),
+    KEY `idutilisateur` (`idUtilisateur`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_bin;
 -- --------------------------------------------------------
 --
@@ -146,7 +148,7 @@ CREATE TABLE `t_formationfavorite` (
     PRIMARY KEY (`id`),
     KEY `idformation` (`idformation`),
     KEY `idutilisateur` (`idutilisateur`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utfmb3_bin;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_bin;
 -- --------------------------------------------------------
 --
 -- Structure de la table `t_ministage` modif pk id & id etab
@@ -193,7 +195,7 @@ CREATE TABLE `t_reservation` (
     KEY `idmini` (`idmini`),
     KEY `idmini_2` (`idmini`),
     KEY `idReservant` (`idreservant`),
-    KEY 'idetablissement' ('idEtabOrigine')
+    KEY `idetablissement` (`idEtabOrigine`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_bin;
 
 --
