@@ -1,15 +1,17 @@
--- Adminer 4.8.1 MySQL 8.0.34 dump
-
-SET NAMES utf8;
-SET time_zone = '+00:00';
-SET foreign_key_checks = 0;
-SET sql_mode = 'NO_AUTO_VALUE_ON_ZERO';
-
-SET NAMES utf8mb4;
-
-DROP DATABASE IF EXISTS `ministages44_1`;
-CREATE DATABASE `ministages44_1` /*!40100 DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci */ /*!80016 DEFAULT ENCRYPTION='N' */;
+-- --------------------------------------------------------
+--
+-- Fichier Insertion données modifié
+--
 USE `ministages44_1`;
+/* Changements :
+ * Ordre des tables (important pour certaines clés étrangères)
+ * Formations manquantes ajoutées
+ * Utilisateurs des favoris ajoutés
+ * Utilisateurs des mini-stages ajoutés
+ * Utilisateurs des réservations ajoutés
+ * Établissements des réservations ajoutés
+ * Mini-stages des réservations ajoutés
+ */
 
 INSERT INTO `t_academie` (`id`, `nom`) VALUES
                                            (1,	'nantes'),
@@ -59,7 +61,6 @@ INSERT INTO `t_typeetab` (`id`, `nom`, `nomcourt`) VALUES
 (7,	'MFR',	'MFR'),
 (8,	'Autres',	'');
 
-
 INSERT INTO `t_typeformation` (`id`, `nom`, `nomcourt`) VALUES
 (1,	'BAC PRO',	'BAC PRO'),
 (2,	'CAP',	'CAP'),
@@ -81,10 +82,7 @@ INSERT INTO `t_fonction` (`id`, `nom`) VALUES
 (7,	'Secrétaire'),
 (8,	'Directeur'),
 (9,	'DDFPT'),
-(10,'ADDFPT');
-
-
-
+(10,	'ADDFPT');
 
 INSERT INTO `t_etablissement` (`id`, `nom`, `nom_court`, `idtype`, `idacademie`, `adresse`, `ville`, `cp`, `mailetab`, `RNE`, `logo`, `cachet`, `tel`) VALUES
 (1,	'LOUIS ARMAND',	NULL,	5,	1,	'boulevard Jean de Grandmaison',	'MACHECOUL-ST MEME',	'44270',	'Offrant mini-stage',	'0440352U',	'logo_352u.png',	'sign_vide.png',	'0240785124'),
@@ -102,14 +100,13 @@ INSERT INTO `t_etablissement` (`id`, `nom`, `nom_court`, `idtype`, `idacademie`,
 (29,	'NELSON MANDELA',	NULL,	3,	1,	'10 RUE PIERRE VIDAL-NAQUET',	'NANTES',	'44265',	'Offrant mini-stage',	'0440765S',	'logo_765s.png',	'sign_765s.png',	'0251728660'),
 (31,	'LEONARD DE VINCI',	NULL,	5,	1,	'31 Rue de la Bottière  - BP 72821',	'NANTES CEDEX 03',	'44328',	'ce.0440035z@ac-nantes.fr',	'0440035Z',	'logo_035z.png',	'sign_035z.png',	'0240503332'),
 (33,	'GUY MOQUET - ETIENNE LENOIR',	NULL,	3,	1,	'1 rue de L\'Europe BP209',	'CHATEAUBRIANT CEDEX',	'44146',	'ce.0440005s@ac-nantes.fr',	'0440005S',	'logo_005s.png',	'sign_005s.png',	'0240815656'),
-                                                       (114,	'LA COLINIÈRE',	NULL,	1,	1,	'129 rue du Landreau',	'NANTES',	'44319',	'ce.0440028s@ac-nantes.fr',	'0440028S',	'',	'',	NULL),
-                                                       (170,	'LA DURANTIÈRE',	NULL,	1,	1,	'17 rue baptiste marcet',	'NANTES',	'44100',	'ce.0441608j@ac-nantes.fr',	'0441608J',	'',	'',	NULL),
+                                                       (35,	'ETABLISSEMENT GENERIQUE 35',	NULL,	1,	1,	'Adresse non renseignée',	'NANTES',	'44000',	'',	'0440035A',	'',	'',	NULL),
                                                        (56,	'LGTA JULES RIEFFEL',	NULL,	2,	1,	'5 Rue de la Syonnière',	'SAINT HERBLAIN',	'44800',	'',	'0442061B',	'logo_061b.png',	'sign_vide.png',	'0240949930'),
                                                        (80,	'MONGE LA CHAUVINIERE',	NULL,	3,	1,	'2 Rue de la Fantaisie',	'NANTES CEDEX3',	'44322',	'ce.0440030u@ac-nantes.fr',	'0440030U',	'',	'',	NULL),
+                                                       (114,	'LA COLINIÈRE',	NULL,	1,	1,	'129 rue du Landreau',	'NANTES',	'44319',	'ce.0440028s@ac-nantes.fr',	'0440028S',	'',	'',	NULL),
+                                                       (170,	'LA DURANTIÈRE',	NULL,	1,	1,	'17 rue baptiste marcet',	'NANTES',	'44100',	'ce.0441608j@ac-nantes.fr',	'0441608J',	'',	'',	NULL),
                                                        (1031,	'LA RIVIERE',	NULL,	6,	1,	'10 boulevard Albert Einstein',	'NANTES',	'44323',	'ce.0440329u@ac-nantes.fr',	'0440329U',	'',	'',	NULL),
                                                        (58,	'_ _ _ _ _ _ _ _ _ _ _ _ _ ',	NULL,	8,	1,	'_ _ _ _ _ _ _ _ _',	'_ _ _ _ _ _ _ _ _',	NULL,	'',	'0441234U',	'',	'',	NULL);
-
-
 
 INSERT INTO `t_formation` (`id`, `idtype`, `nom`) VALUES
                                                       (1,	2,	'Production et Services en Restauration (Rapide, Collective, Cafétéria) '),
@@ -131,6 +128,15 @@ INSERT INTO `t_formation` (`id`, `idtype`, `nom`) VALUES
 (32,	1,	'Accompagnement Soins et Services à la Personne'),
 (43,	1,	'Artisanat et Métiers d\'Arts option Communication Visuelle'),
                                                       (45,	1,	'Aéronautique option Avionique'),
+                                                      (63,	7,	'Formation 63'),
+                                                      (66,	7,	'Formation 66'),
+                                                      (69,	7,	'Formation 69'),
+                                                      (70,	7,	'Formation 70'),
+                                                      (71,	7,	'Formation 71'),
+                                                      (72,	7,	'Formation 72'),
+                                                      (74,	7,	'Formation 74'),
+                                                      (75,	7,	'Formation 75'),
+                                                      (88,	7,	'Formation 88'),
                                                       (98,	1,	' Tertiaire (Vente+Commerce+Accueil) / spécial Bougainville'),
                                                       (100,	7,	'Les Bâtisseuses'),
                                                       (101,	5,	'MHR Management en Hotellerie Restauration  3 options'),
@@ -143,47 +149,71 @@ INSERT INTO `t_formation` (`id`, `idtype`, `nom`) VALUES
                                                       (114,	3,	'STI2D - EE - Énergies et Environnement'),
                                                       (115,	3,	'STI2D : ITEC-SIN - Innovation Technologique et Éco-Conception - Systèmes d\'Information et Numérique'),
 (117,	6,	'Sciences de l\'Ingénieur'),
+                                                      (121,	7,	'Formation 121'),
+                                                      (122,	7,	'Formation 122'),
                                                       (123,	1,	'Tertiaire (Commerce+ARCU) / spécial LP Chassagne'),
                                                       (124,	3,	'STI2D : IT-I2D Innovation Technologique - Ingénierie et Développement Durable'),
                                                       (126,	3,	'STMG - Sciences et Technologies du Management et de la Gestion'),
+                                                      (127,	7,	'Formation 127'),
+                                                      (128,	7,	'Formation 128'),
                                                       (130,	5,	'Communication'),
                                                       (131,	5,	'Tourisme'),
                                                       (132,	8,	'Science de l\'Ingénieur'),
 (133,	8,	'Numérique et Science Informatique'),
+(134,	7,	'Formation 134'),
+(141,	7,	'Formation 141'),
 (146,	2,	'Fleuriste'),
 (148,	1,	'Aménagements Paysagers'),
 (150,	1,	'Cultures Marines'),
+(153,	7,	'Formation 153'),
+(155,	7,	'Formation 155'),
+(156,	7,	'Formation 156'),
+(157,	7,	'Formation 157'),
+(161,	7,	'Formation 161'),
 (163,	2,	'Taille de Pierre'),
 (164,	6,	'Création et  Innovation Technologiques - Sciences de l\'Ingénieur '),
                                                       (165,	7,	'3ème Prépa Métiers'),
                                                       (168,	7,	'ABIBAC'),
                                                       (170,	3,	'STI2D : ITEC - Innovation Technologique et Éco-Conception'),
                                                       (171,	7,	'Certificat de spécialisation MONTEUR RÉSEAUX ÉLECTRIQUES (post Bac Pro ou BP) '),
+                                                      (180,	7,	'Formation 180'),
+                                                      (187,	7,	'Formation 187'),
+                                                      (188,	7,	'Formation 188'),
+                                                      (193,	7,	'Formation 193'),
+                                                      (210,	7,	'Formation 210'),
+                                                      (223,	7,	'Formation 223'),
+                                                      (238,	7,	'Formation 238'),
                                                       (250,	8,	'Théatre'),
-                                                      (252,	5,	'SIO :Services informatiques aux Organisations');
+                                                      (252,	5,	'SIO :Services informatiques aux Organisations'),
+                                                      (259,	7,	'Formation 259'),
+                                                      (261,	7,	'Formation 261');
 
-
-INSERT INTO `t_formationfavorite` (`id`, `idformation`, `idutilisateur`) VALUES
-                                                                             (1,	252,	1757),
-                                                                             (2,	238,	50),
-                                                                             (4,	156,	50),
-                                                                             (5,	74,	50),
-                                                                             (6,	1,	50),
-                                                                             (7,	180,	50),
-                                                                             (8,	157,	50),
-                                                                             (9,	155,	50),
-                                                                             (10,	29,	1758),
-                                                                             (12,	126,	1757),
-                                                                             (13,	70,	1775),
-                                                                             (15,	121,	14),
-                                                                             (16,	122,	14),
-                                                                             (17,	153,	14),
-                                                                             (18,	131,	1541),
-                                                                             (19,	69,	1827),
-                                                                             (29,	223,	1845),
-                                                                             (30,	75,	1775),
-                                                                             (31,	261,	1775);
-
+INSERT INTO `t_utilisateur` (`id`, `identifiant`, `mdp`, `idprofil`, `nom`, `prenom`, `mail`, `idfonction`, `tel`, `important`, `important2`, `rattacher`, `id_etablissement`, `clauses_texte`) VALUES
+                                                                                                                                                                                                    (1,	'admin',	'$2y$10$2AflxbEeVBGKXDk7iCQvJe.ajQ.N6CN4v02Gs1kJ79w6MFqGclVJG',	1,	'NOMUTILISATEUR1',	'PRENOMUTILISATEUR',	'@_email',	9,	'0606060606',	'',	'',	0,	NULL,	NULL),
+                                                                                                                                                                                                    (2,	'identifiant1',	'$2y$10$XeunTB.GDWIi3gVXG.CFZeaM2F5HEO9Ln.gkjnbgeHbn9IaRuve6S',	2,	'NOMUTILISATEUR2',	'PRENOMUTILISATEUR',	'@_email',	9,	'0606060606',	'Merci de se présenter à l\'accueil du lycée 10min avant l\'heure prévue avec la présente convention. L\'élève a la possibilité de déjeuner au tarif de 5€20 le repas. Obligation pour les élèves venant sur les mini-stages en métiers de la restauration finissant après 14H30 ou 15H.  Apporter la somme en espèce ou chèque.',	'Merci de nous informer si l\'élève suit un dispositif particulier ULIS, ITEP, IME, ... en mettant en copie morgane.fraval@ac-nantes.fr lors de l\'envoi de la convention.',	0,	1,	NULL),
+(3,	'identifiant2',	'HASH_DU_MOT_PASSE_A_GENERER',	3,	'Pédagogique ',	'Equipe',	'pasdemail@sans.fr',	6,	'',	'',	'',	2,	1,	NULL),
+(4,	'identifiant3',	'HASH_DU_MOT_PASSE_A_GENERER',	2,	'NOMUTILISATEUR3',	'PRENOMUTILISATEUR',	'@_email',	9,	'0606060606',	'Merci d\'envoyer par mail la convention signée des parents et de l\'établissement d\'origine (sauf candidature individuelle) à:  ce.0440537v@ac-nantes.fr\r\nMerci de vous présenter à l accueil du lycée avec cette convention de mini stage signée par les parents et l’établissement d\'origine.\r\n',	'Possibilité de déjeuner au self au tarif élève en vigueur dans l\'établissement',	0,	3,	NULL),
+                                                                                                                                                                                                    (5,	'identifiant4',	'HASH_DU_MOT_PASSE_A_GENERER',	3,	'Pédagogique',	'Equipe',	'pasdemail@sans.fr',	6,	'',	'',	'',	4,	3,	NULL),
+                                                                                                                                                                                                    (14,	'utilisateur14',	'HASH_DU_MOT_PASSE_A_GENERER',	2,	'Utilisateur',	'14',	'utilisateur14@example.fr',	6,	'0600000014',	'',	'',	NULL,	1,	NULL),
+                                                                                                                                                                                                    (16,	'utilisateur16',	'HASH_DU_MOT_PASSE_A_GENERER',	2,	'Utilisateur',	'16',	'utilisateur16@example.fr',	6,	'0600000016',	'',	'',	NULL,	1,	NULL),
+                                                                                                                                                                                                    (18,	'utilisateur18',	'HASH_DU_MOT_PASSE_A_GENERER',	2,	'Utilisateur',	'18',	'utilisateur18@example.fr',	6,	'0600000018',	'',	'',	NULL,	1,	NULL),
+                                                                                                                                                                                                    (26,	'utilisateur26',	'HASH_DU_MOT_PASSE_A_GENERER',	2,	'Utilisateur',	'26',	'utilisateur26@example.fr',	6,	'0600000026',	'',	'',	NULL,	1,	NULL),
+                                                                                                                                                                                                    (28,	'utilisateur28',	'HASH_DU_MOT_PASSE_A_GENERER',	2,	'Utilisateur',	'28',	'utilisateur28@example.fr',	6,	'0600000028',	'',	'',	NULL,	1,	NULL),
+                                                                                                                                                                                                    (30,	'utilisateur30',	'HASH_DU_MOT_PASSE_A_GENERER',	2,	'Utilisateur',	'30',	'utilisateur30@example.fr',	6,	'0600000030',	'',	'',	NULL,	1,	NULL),
+                                                                                                                                                                                                    (32,	'utilisateur32',	'HASH_DU_MOT_PASSE_A_GENERER',	2,	'Utilisateur',	'32',	'utilisateur32@example.fr',	6,	'0600000032',	'',	'',	NULL,	1,	NULL),
+                                                                                                                                                                                                    (38,	'utilisateur38',	'HASH_DU_MOT_PASSE_A_GENERER',	2,	'Utilisateur',	'38',	'utilisateur38@example.fr',	6,	'0600000038',	'',	'',	NULL,	1,	NULL),
+                                                                                                                                                                                                    (42,	'utilisateur42',	'HASH_DU_MOT_PASSE_A_GENERER',	2,	'Utilisateur',	'42',	'utilisateur42@example.fr',	6,	'0600000042',	'',	'',	NULL,	1,	NULL),
+                                                                                                                                                                                                    (44,	'utilisateur44',	'HASH_DU_MOT_PASSE_A_GENERER',	2,	'Utilisateur',	'44',	'utilisateur44@example.fr',	6,	'0600000044',	'',	'',	NULL,	1,	NULL),
+                                                                                                                                                                                                    (50,	'utilisateur50',	'HASH_DU_MOT_PASSE_A_GENERER',	3,	'Utilisateur',	'50',	'utilisateur50@example.fr',	6,	'0600000050',	'',	'',	NULL,	NULL,	NULL),
+                                                                                                                                                                                                    (58,	'utilisateur58',	'HASH_DU_MOT_PASSE_A_GENERER',	2,	'Utilisateur',	'58',	'utilisateur58@example.fr',	6,	'0600000058',	'',	'',	NULL,	1,	NULL),
+                                                                                                                                                                                                    (62,	'utilisateur62',	'HASH_DU_MOT_PASSE_A_GENERER',	2,	'Utilisateur',	'62',	'utilisateur62@example.fr',	6,	'0600000062',	'',	'',	NULL,	1,	NULL),
+                                                                                                                                                                                                    (1017,	'identifiant10',	'HASH_DU_MOT_PASSE_A_GENERER',	4,	'NOMUTILISATEUR4',	'PRENOMUTILISATEUR',	'@_email',	7,	'0606060606',	'',	'',	NULL,	1,	NULL),
+                                                                                                                                                                                                    (1541,	'utilisateur1541',	'HASH_DU_MOT_PASSE_A_GENERER',	3,	'Utilisateur',	'1541',	'utilisateur1541@example.fr',	6,	'0600001541',	'',	'',	NULL,	NULL,	NULL),
+                                                                                                                                                                                                    (1757,	'utilisateur1757',	'HASH_DU_MOT_PASSE_A_GENERER',	3,	'Utilisateur',	'1757',	'utilisateur1757@example.fr',	6,	'0600001757',	'',	'',	NULL,	NULL,	NULL),
+                                                                                                                                                                                                    (1758,	'utilisateur1758',	'HASH_DU_MOT_PASSE_A_GENERER',	3,	'Utilisateur',	'1758',	'utilisateur1758@example.fr',	6,	'0600001758',	'',	'',	NULL,	NULL,	NULL),
+                                                                                                                                                                                                    (1775,	'utilisateur1775',	'HASH_DU_MOT_PASSE_A_GENERER',	3,	'Utilisateur',	'1775',	'utilisateur1775@example.fr',	6,	'0600001775',	'',	'',	NULL,	NULL,	NULL),
+                                                                                                                                                                                                    (1827,	'utilisateur1827',	'HASH_DU_MOT_PASSE_A_GENERER',	3,	'Utilisateur',	'1827',	'utilisateur1827@example.fr',	6,	'0600001827',	'',	'',	NULL,	NULL,	NULL),
+                                                                                                                                                                                                    (1845,	'utilisateur1845',	'HASH_DU_MOT_PASSE_A_GENERER',	3,	'Utilisateur',	'1845',	'utilisateur1845@example.fr',	6,	'0600001845',	'',	'',	NULL,	NULL,	NULL);
 
 INSERT INTO `t_ministage` (`id`, `idOffrant`, `idformation`, `civilite`, `nomProf`, `date`, `hdebut`, `hfin`, `nbplace`, `nbplacereste`, `lieu`) VALUES
                                                                                                                                                      (8041,	62,	259,	'Mme',	'CPE',	'2025-11-04',	'08:30',	'16:30',	3,	3,	'VIE SCOLAIRE'),
@@ -224,45 +254,55 @@ INSERT INTO `t_ministage` (`id`, `idOffrant`, `idformation`, `civilite`, `nomPro
                                                                                                                                                      (9737,	58,	66,	'Mme',	'PROF25',	'2026-02-11',	'08:00',	'11:55',	2,	2,	'200'),
                                                                                                                                                      (10053,	16,	161,	'M.',	'PROF26',	'2026-01-28',	'08:10',	'11:00',	10,	8,	'Se présenter à l\'accueil du Lycée');
 
+INSERT INTO `t_formationfavorite` (`id`, `idformation`, `idutilisateur`) VALUES
+(1,	252,	1757),
+(2,	238,	50),
+(4,	156,	50),
+(5,	74,	50),
+(6,	1,	50),
+(7,	180,	50),
+(8,	157,	50),
+(9,	155,	50),
+(10,	29,	1758),
+(12,	126,	1757),
+(13,	70,	1775),
+(15,	121,	14),
+(16,	122,	14),
+(17,	153,	14),
+(18,	131,	1541),
+(19,	69,	1827),
+(29,	223,	1845),
+(30,	75,	1775),
+(31,	261,	1775);
 
 INSERT INTO `t_reservation` (`id`, `idmini`, `nom`, `prenom`, `idReservant`, `idEtabOrigine`, `confirmation`, `rappel`, `absence`) VALUES
-(17196,	8042,	'NOMELEVE1',	'PRENOMELEVE',	1067,	117,	1,	0,	0),
-(17384,	8631,	'NOMELEVE2',	'PRENOMELEVE',	1054,	104,	1,	0,	0),
-(17385,	8631,	'NOMELEVE3',	'PRENOMELEVE',	1054,	104,	1,	0,	0),
-(17386,	8631,	'NOMELEVE5',	'PRENOMELEVE',	1054,	104,	1,	0,	0),
-(17542,	8245,	'NOMELEVE7',	'PRENOMELEVE',	1132,	178,	0,	0,	1),
-(17543,	8343,	'NOMELEVE8',	'PRENOMELEVE',	1168,	213,	1,	0,	0),
-(18703,	9355,	'NOMELEVE9',	'PRENOMELEVE',	1054,	104,	1,	0,	1),
-(18704,	9518,	'NOMELEVE10',	'PRENOMELEVE',	1190,	233,	0,	1,	0),
-(18807,	8661,	'NOMELEVE11',	'PRENOMELEVE',	1025,	21,	1,	0,	0),
-(19569,	9674,	'NOMELEVE12',	'PRENOMELEVE',	1174,	219,	1,	0,	0),
-(19570,	9215,	'NOMELEVE13',	'PRENOMELEVE',	1030,	35,	1,	1,	0),
-(19571,	8147,	'NOMELEVE14',	'PRENOMELEVE',	1190,	233,	1,	0,	0),
-(19606,	8531,	'NOMELEVE15',	'PRENOMELEVE',	1269,	304,	0,	0,	0),
-(19608,	9673,	'NOMELEVE16',	'PRENOMELEVE',	1115,	164,	1,	0,	0),
-(19732,	8818,	'NOMELEVE17',	'PRENOMELEVE',	1175,	220,	1,	0,	0),
-(19738,	9894,	'NOMELEVE18',	'PRENOMELEVE',	1032,	85,	1,	0,	0),
-(19739,	9254,	'NOMELEVE19',	'PRENOMELEVE',	1112,	161,	0,	0,	0),
-(19740,	9946,	'NOMELEVE20',	'PRENOMELEVE',	1135,	181,	1,	0,	0),
-(19741,	9946,	'NOMELEVE21',	'PRENOMELEVE',	1135,	181,	1,	0,	0),
-(19742,	9748,	'NOMELEVE22',	'PRENOMELEVE',	1032,	85,	1,	0,	0),
-(19812,	8979,	'NOMELEVE4',	'PRENOMELEVE',	1227,	269,	1,	0,	0),
-(19813,	8403,	'NOMELEVE4',	'PRENOMELEVE',	1227,	269,	1,	0,	1),
-(19814,	9138,	'NOMELEVE4',	'PRENOMELEVE',	1227,	269,	1,	1,	0),
-(19815,	9921,	'NOMELEVE23',	'PRENOMELEVE',	1748,	NULL,	1,	0,	0),
-(19838,	9562,	'NOMELEVE24',	'PRENOMELEVE',	1171,	216,	1,	0,	0),
-(19839,	9531,	'NOMELEVE25',	'PRENOMELEVE',	1463,	NULL,	1,	0,	0),
-(19877,	9838,	'NOMELEVE26',	'PRENOMELEVE',	1135,	181,	0,	0,	1),
-(19923,	9527,	'NOMELEVE28',	'PRENOMELEVE',	1392,	416,	1,	1,	0),
-(19924,	9690,	'NOMELEVE27',	'PRENOMELEVE',	1174,	219,	0,	1,	1);
-
-
-INSERT INTO `t_utilisateur` (`id`, `identifiant`, `mdp`, `idprofil`, `nom`, `prenom`, `mail`, `idfonction`, `tel`, `important`, `important2`, `rattacher`, `id_etablissement`, `clauses_texte`) VALUES
-(1,	'admin',	'HASH_DU_MOT_PASSE_A_GENERER',	1,	'NOMUTILISATEUR1',	'PRENOMUTILISATEUR',	'@_email',	9,	'0606060606',	'',	'',	0,	NULL,	NULL),
-(2,	'identifiant1',	'HASH_DU_MOT_PASSE_A_GENERER',	2,	'NOMUTILISATEUR2',	'PRENOMUTILISATEUR',	'@_email',	9,	'0606060606',	'Merci de se présenter à l\'accueil du lycée 10min avant l\'heure prévue avec la présente convention. L\'élève a la possibilité de déjeuner au tarif de 5€20 le repas. Obligation pour les élèves venant sur les mini-stages en métiers de la restauration finissant après 14H30 ou 15H.  Apporter la somme en espèce ou chèque.',	'Merci de nous informer si l\'élève suit un dispositif particulier ULIS, ITEP, IME, ... en mettant en copie morgane.fraval@ac-nantes.fr lors de l\'envoi de la convention.',	0,	1,	NULL),
-                                                                                                                                                     (3,	'identifiant2',	'HASH_DU_MOT_PASSE_A_GENERER',	3,	'Pédagogique ',	'Equipe',	'pasdemail@sans.fr',	6,	'',	'',	'',	2,	1,	NULL),
-                                                                                                                                                     (4,	'identifiant3',	'HASH_DU_MOT_PASSE_A_GENERER',	2,	'NOMUTILISATEUR3',	'PRENOMUTILISATEUR',	'@_email',	9,	'0606060606',	'Merci d\'envoyer par mail la convention signée des parents et de l\'établissement d\'origine (sauf candidature individuelle) à:  ce.0440537v@ac-nantes.fr\r\nMerci de vous présenter à l accueil du lycée avec cette convention de mini stage signée par les parents et l’établissement d\'origine.\r\n',	'Possibilité de déjeuner au self au tarif élève en vigueur dans l\'établissement',	0,	3,	NULL),
-(5,	'identifiant4',	'HASH_DU_MOT_PASSE_A_GENERER',	3,	'Pédagogique',	'Equipe',	'pasdemail@sans.fr',	6,	'',	'',	'',	4,	3,	NULL),
-(1017,	'identifiant10',	'HASH_DU_MOT_PASSE_A_GENERER',	4,	'NOMUTILISATEUR4',	'PRENOMUTILISATEUR',	'@_email',	7,	'0606060606',	'',	'',	NULL,74,	NULL);
-
+(17196,	8042,	'NOMELEVE1',	'PRENOMELEVE',	1017,	114,	1,	0,	0),
+(17384,	8041,	'NOMELEVE2',	'PRENOMELEVE',	1017,	114,	1,	0,	0),
+(17385,	8041,	'NOMELEVE3',	'PRENOMELEVE',	1017,	114,	1,	0,	0),
+(17386,	8041,	'NOMELEVE5',	'PRENOMELEVE',	1017,	114,	1,	0,	0),
+(17542,	8203,	'NOMELEVE7',	'PRENOMELEVE',	1017,	170,	0,	0,	1),
+(17543,	8212,	'NOMELEVE8',	'PRENOMELEVE',	1017,	56,	1,	0,	0),
+(18703,	8272,	'NOMELEVE9',	'PRENOMELEVE',	1017,	56,	1,	0,	1),
+(18704,	8273,	'NOMELEVE10',	'PRENOMELEVE',	1017,	80,	0,	1,	0),
+(18807,	8315,	'NOMELEVE11',	'PRENOMELEVE',	1017,	21,	1,	0,	0),
+(19569,	8583,	'NOMELEVE12',	'PRENOMELEVE',	1017,	80,	1,	0,	0),
+(19570,	8584,	'NOMELEVE13',	'PRENOMELEVE',	1017,	35,	1,	1,	0),
+(19571,	8585,	'NOMELEVE14',	'PRENOMELEVE',	1017,	80,	1,	0,	0),
+(19606,	8592,	'NOMELEVE15',	'PRENOMELEVE',	1017,	114,	0,	0,	0),
+(19608,	8593,	'NOMELEVE16',	'PRENOMELEVE',	1017,	170,	1,	0,	0),
+(19732,	8949,	'NOMELEVE17',	'PRENOMELEVE',	1017,	80,	1,	0,	0),
+(19738,	8955,	'NOMELEVE18',	'PRENOMELEVE',	1017,	56,	1,	0,	0),
+(19739,	9030,	'NOMELEVE19',	'PRENOMELEVE',	1017,	56,	0,	0,	0),
+(19740,	9079,	'NOMELEVE20',	'PRENOMELEVE',	1017,	114,	1,	0,	0),
+(19741,	9080,	'NOMELEVE21',	'PRENOMELEVE',	1017,	114,	1,	0,	0),
+(19742,	9081,	'NOMELEVE22',	'PRENOMELEVE',	1017,	56,	1,	0,	0),
+(19812,	9098,	'NOMELEVE4',	'PRENOMELEVE',	1017,	170,	1,	0,	0),
+(19813,	9099,	'NOMELEVE4',	'PRENOMELEVE',	1017,	170,	1,	0,	1),
+(19814,	9119,	'NOMELEVE4',	'PRENOMELEVE',	1017,	170,	1,	1,	0),
+(19815,	9120,	'NOMELEVE23',	'PRENOMELEVE',	1017,	NULL,	1,	0,	0),
+(19838,	9122,	'NOMELEVE24',	'PRENOMELEVE',	1017,	80,	1,	0,	0),
+(19839,	9124,	'NOMELEVE25',	'PRENOMELEVE',	1017,	NULL,	1,	0,	0),
+(19877,	9165,	'NOMELEVE26',	'PRENOMELEVE',	1017,	114,	0,	0,	1),
+(19923,	9172,	'NOMELEVE28',	'PRENOMELEVE',	1017,	56,	1,	1,	0),
+(19924,	9356,	'NOMELEVE27',	'PRENOMELEVE',	1017,	80,	0,	1,	1);
 
